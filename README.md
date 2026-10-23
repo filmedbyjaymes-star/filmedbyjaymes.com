@@ -1,48 +1,20 @@
-# Filmed by Jaymes — Portfolio Website
+# FilmedByJaymes — Website
 
-**Live site:** [filmedbyjaymes.com](https://filmedbyjaymes.com)
+Live site: https://filmedbyjaymes.com (GitHub Pages, custom domain in `CNAME`)
 
-## Setup
+Single-file site: everything is in `index.html`.
 
-### 1. Add your photo
-Place your headshot in the `images/` folder named exactly:
-```
-images/jaymes.jpg
-```
-The image will appear in both the hero section (darkened background) and the About section.
+## Work thumbnails
+Save a cover image for each Work card in `images/` as `work-1.jpg`, `work-2.jpg`, `work-3.jpg`, `work-4.jpg`
+(16:10 works best, about 1280x800). Until they exist, the cards show a clean placeholder.
+Card order: 1 = AMSC TikTok, 2-4 = Instagram Reels (links are in the Work section of `index.html`).
 
-### 2. Deploy to GitHub Pages
-1. Push this folder to a GitHub repository
-2. Go to **Settings → Pages**
-3. Set source to **main branch / root**
-4. Point your custom domain (`filmedbyjaymes.com`) to GitHub Pages
+## Language toggle
+EN is the text in the HTML. Spanish lives in the `ES` object near the bottom of `index.html`.
+Each translatable element has a `data-i18n="key"` that matches a key in `ES`.
 
-### 3. Add video links
-In `index.html`, update the work grid items with your actual YouTube video IDs:
-```html
-<!-- Replace the href with your specific video URLs -->
-<a href="https://youtu.be/YOUR_VIDEO_ID" ...>
-```
-
-### 4. Update portfolio thumbnails (optional)
-Add real video thumbnails to the `images/` folder and reference them in the work grid:
-```html
-<img src="images/wedding-thumbnail.jpg" alt="..." class="work-thumb" />
-```
-
-## File Structure
-```
-filmedbyjaymes/
-├── index.html        ← Main website (single file, everything included)
-├── images/
-│   └── jaymes.jpg    ← ADD YOUR PHOTO HERE
-└── README.md
-```
-
-## Customization
-
-- **Colors:** All in CSS `:root` variables at the top of `<style>`
-- **Services:** Edit the three `.service-card` blocks
-- **Clients:** Edit the `.clients-grid` section
-- **Contact info:** Search for `filmedbyjaymes@gmail.com` and `714-499-6088`
-- **Social links:** Update Instagram and YouTube URLs in the Work and Contact sections
+## Editing
+- Colors / fonts: CSS variables in `:root`
+- Results numbers: `.metric` blocks in the Results section
+- Partners: `.partner` blocks in the Partners section
+- Contact: email only (`filmedbyjaymes@gmail.com`)
