@@ -41,15 +41,17 @@
       --off-black:  #111111;
       --card-bg:    #0e0e0e;
       --border:     #1e1e1e;
-      --muted:      #666666;
-      --light-muted:#8c8c8c;
+      --muted:      #6a6a6a;
+      --light-muted:#8f8f8f;
       --white:      #f0f0f0;
       --pure-white: #ffffff;
-      --accent:     #3b82f6;
+      --accent:     #4f8cf7;
       --serif:      'Cormorant Garamond', Georgia, serif;
       --sans:       'Inter', system-ui, sans-serif;
       --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --t:          0.45s;
+      --wrap:       1120px;   /* max content width on desktop */
+      --gutter:     56px;
     }
 
     html { scroll-behavior: smooth; }
@@ -90,18 +92,20 @@
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
     }
     .cursor-ring {
       position: fixed;
       width: 34px; height: 34px;
-      border: 1px solid rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.45);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
       transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
       transition: width .3s var(--ease), height .3s var(--ease), border-color .3s;
     }
-    .cursor-ring.hovered { width: 56px; height: 56px; border-color: rgba(255,255,255,0.65); }
+    .cursor-ring.hovered { width: 56px; height: 56px; border-color: rgba(255,255,255,0.7); }
     @media (hover: none), (pointer: coarse) { .cursor, .cursor-ring { display: none; } }
 
     /* ── NAV ──────────────────────────────────────── */
@@ -109,7 +113,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 28px 56px;
+      padding: 24px max(var(--gutter), calc((100% - var(--wrap)) / 2));
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -121,7 +125,7 @@
       background: rgba(8,8,8,0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      padding: 18px 56px;
+      padding-top: 15px; padding-bottom: 15px;
       border-bottom-color: var(--border);
     }
     .nav-logo {
@@ -129,17 +133,17 @@
       align-items: center;
       gap: 10px;
       font-family: var(--serif);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 300;
       white-space: nowrap;
     }
-    .nav-logo-img { width: 32px; height: 32px; object-fit: contain; opacity: 0.9; }
-    .nav-right { display: flex; align-items: center; gap: 40px; }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-logo-img { width: 30px; height: 30px; object-fit: contain; opacity: 0.9; }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--light-muted);
@@ -180,7 +184,7 @@
     #hero {
       position: relative;
       height: 100vh;
-      min-height: 680px;
+      min-height: 620px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -194,7 +198,7 @@
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center 15%;
-      filter: grayscale(100%) brightness(0.18) contrast(1.1);
+      filter: grayscale(100%) brightness(0.2) contrast(1.1);
       transform: scale(1.06);
       transition: transform 9s ease;
     }
@@ -206,60 +210,61 @@
     }
     .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
     .hero-eyebrow {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--light-muted);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       font-weight: 400;
       max-width: 520px;
     }
     .hero-name {
       font-family: var(--serif);
-      font-size: clamp(64px, 11.5vw, 158px);
+      font-size: clamp(56px, 8.6vw, 112px);
       font-weight: 300;
-      line-height: 0.88;
+      line-height: 0.9;
       letter-spacing: -0.02em;
       color: var(--pure-white);
-      margin-bottom: 40px;
+      margin-bottom: 34px;
     }
     .hero-name em { font-style: italic; color: rgba(255,255,255,0.85); }
-    .hero-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 28px; }
+    .hero-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.25); margin-bottom: 24px; }
     .hero-tagline {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--light-muted);
       font-weight: 400;
       line-height: 2;
-      margin-bottom: 40px;
+      margin-bottom: 34px;
     }
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      font-size: 0.64rem;
+      font-size: 0.62rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      font-weight: 400;
-      color: var(--pure-white);
-      border: 1px solid rgba(255,255,255,0.35);
+      font-weight: 500;
+      color: var(--black);
+      background: var(--pure-white);
+      border: 1px solid var(--pure-white);
       padding: 15px 30px;
       transition: background var(--t), color var(--t), border-color var(--t);
     }
-    .btn:hover { background: var(--pure-white); color: var(--black); border-color: var(--pure-white); }
-    .btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    .btn:hover { background: transparent; color: var(--pure-white); }
+    .btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.6; }
 
     .hero-scroll {
       position: absolute;
-      bottom: 36px; left: 50%;
+      bottom: 32px; left: 50%;
       transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 10px;
       z-index: 2;
     }
     .hero-scroll span { font-size: 0.55rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
     .scroll-line {
-      width: 1px; height: 46px;
+      width: 1px; height: 42px;
       background: linear-gradient(to bottom, rgba(255,255,255,0.25), transparent);
       animation: pulse 2.2s ease-in-out infinite;
     }
@@ -283,50 +288,62 @@
       font-weight: 400;
       flex-shrink: 0;
     }
-    .marquee-track .sep { color: var(--border); padding: 0 4px; }
+    .marquee-track .sep { color: #2a2a2a; padding: 0 4px; }
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ── SHARED SECTION STYLES ───────────────────── */
-    section { padding: 112px 56px; border-top: 1px solid var(--border); }
+    section {
+      padding: 96px max(var(--gutter), calc((100% - var(--wrap)) / 2));
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
     #hero { border-top: none; }
 
-    .section-label {
-      font-size: 0.58rem;
+    /* Numbered section header */
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 52px;
+    }
+    .sec-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .sec-name {
+      font-size: 0.68rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 56px;
+      color: var(--white);
       font-weight: 400;
     }
-    .section-label::after { content:''; flex:1; max-width:48px; height:1px; background:var(--border); }
+    .sec-head::after { content: ''; flex: 1; height: 1px; background: var(--border); transform: translateY(-4px); }
+    .sec-head.center { justify-content: center; }
+    .sec-head.center::before, .sec-head.center::after { content: ''; width: 56px; flex: none; height: 1px; background: var(--border); transform: translateY(-4px); }
 
     .heading {
       font-family: var(--serif);
-      font-size: clamp(42px, 6vw, 76px);
+      font-size: clamp(38px, 4.4vw, 60px);
       font-weight: 300;
-      line-height: 1.02;
+      line-height: 1.04;
       color: var(--pure-white);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .heading em { font-style: italic; }
 
-    .blurb {
-      font-size: 0.9rem;
-      line-height: 1.9;
-      color: var(--light-muted);
-      font-weight: 300;
-    }
+    .blurb { font-size: 0.9rem; line-height: 1.9; color: var(--light-muted); font-weight: 300; }
 
-    .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s ease, transform .8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
 
-    /* ── ABOUT ────────────────────────────────────── */
-    #about { display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center; }
-    .about-img-wrap { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+    /* ── 01 ABOUT (plain black) ───────────────────── */
+    #about { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 72px; align-items: center; }
+    .about-img-wrap { position: relative; aspect-ratio: 4/5; overflow: hidden; }
     .about-img-wrap img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center top;
@@ -334,22 +351,22 @@
       transition: transform .8s ease;
     }
     .about-img-wrap:hover img { transform: scale(1.03); }
-    .about-img-frame { position: absolute; inset: 14px; border: 1px solid rgba(255,255,255,0.07); pointer-events: none; }
+    .about-img-frame { position: absolute; inset: 14px; border: 1px solid rgba(255,255,255,0.08); pointer-events: none; }
     .about-heading {
       font-family: var(--serif);
-      font-size: clamp(36px, 4.5vw, 54px);
+      font-size: clamp(32px, 3.4vw, 44px);
       font-weight: 300;
-      line-height: 1.15;
+      line-height: 1.12;
       color: var(--pure-white);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .about-heading em { font-style: italic; }
     .lens-underline { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 8px; text-decoration-color: rgba(255,255,255,0.35); }
-    .about-body { font-size: 0.92rem; line-height: 1.95; color: var(--light-muted); margin-bottom: 24px; }
-    .about-stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); margin: 32px 0; }
-    .stat { padding: 20px 12px; border-right: 1px solid var(--border); text-align: center; }
+    .about-body { font-size: 0.9rem; line-height: 1.9; color: var(--light-muted); margin-bottom: 20px; }
+    .about-stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); margin: 28px 0; }
+    .stat { padding: 18px 10px; border-right: 1px solid var(--border); text-align: center; }
     .stat:last-child { border-right: none; }
-    .stat-n { display: block; font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--pure-white); line-height: 1; margin-bottom: 6px; }
+    .stat-n { display: block; font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--pure-white); line-height: 1; margin-bottom: 6px; }
     .stat-l { font-size: 0.52rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag {
@@ -362,21 +379,22 @@
       font-weight: 400;
     }
 
-    /* ── RESULTS ──────────────────────────────────── */
-    #results { background: var(--off-black); }
-    .results-head { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
-    .results-head .heading { margin-bottom: 0; }
-    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); }
-    .metric {
-      padding: 44px 28px 40px;
-      border-right: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
+    /* ── 02 RESULTS (blue-tinted) ─────────────────── */
+    #results {
+      --border: rgba(110,150,255,0.2);
+      background:
+        radial-gradient(900px 460px at 0% 0%, rgba(59,130,246,0.2), transparent 62%),
+        radial-gradient(700px 380px at 100% 100%, rgba(59,130,246,0.1), transparent 62%),
+        #080b12;
     }
+    .results-head { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; margin-bottom: 52px; }
+    .results-head .heading { margin-bottom: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); background: rgba(8,11,18,0.5); }
+    .metric { padding: 38px 24px 34px; border-right: 1px solid var(--border); position: relative; overflow: hidden; }
     .metric:last-child { border-right: none; }
     .metric::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: var(--accent);
       transform: scaleX(0); transform-origin: left;
       transition: transform 1.4s ease .3s;
@@ -385,68 +403,76 @@
     .metric-num {
       display: block;
       font-family: var(--serif);
-      font-size: clamp(44px, 5vw, 68px);
+      font-size: clamp(40px, 4vw, 56px);
       font-weight: 300;
       line-height: 1;
-      color: var(--pure-white);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, #ffffff 30%, #9ec2ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    .metric-label { display: block; font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); font-weight: 400; margin-bottom: 8px; }
-    .metric-proof { display: block; font-size: 0.74rem; line-height: 1.6; color: var(--muted); }
+    .metric-label { display: block; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); font-weight: 400; margin-bottom: 8px; }
+    .metric-proof { display: block; font-size: 0.74rem; line-height: 1.6; color: #7f8aa3; }
 
     .case-strip {
-      margin-top: 2px;
       border: 1px solid var(--border);
       border-top: none;
-      padding: 36px 40px;
+      background: #090d16;
+      padding: 28px 36px;
       display: grid;
       grid-template-columns: auto 1fr auto;
-      gap: 40px;
+      gap: 36px;
       align-items: center;
     }
-    .case-logo { width: 84px; height: auto; display: block; }
-    .case-text { font-family: var(--serif); font-size: clamp(1.1rem, 1.7vw, 1.4rem); font-style: italic; font-weight: 300; line-height: 1.55; color: var(--white); }
-    .case-source { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: right; line-height: 1.8; }
+    .case-logo { width: 140px; height: auto; display: block; mix-blend-mode: screen; }
+    .case-text { font-family: var(--serif); font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-style: italic; font-weight: 300; line-height: 1.55; color: var(--white); }
+    .case-source { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: #7f8aa3; text-align: right; line-height: 1.8; }
 
-    /* ── SERVICES ─────────────────────────────────── */
-    .service-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .service-items { display: flex; flex-direction: column; border: 1px solid var(--border); margin-top: 40px; }
+    /* ── 03 SERVICES (dotted grid) ────────────────── */
+    #services {
+      background-color: #0b0b0b;
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .service-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .service-items { display: flex; flex-direction: column; border: 1px solid var(--border); margin-top: 32px; background: rgba(8,8,8,0.85); }
     .service-item {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 24px;
+      padding: 16px 22px;
       border-bottom: 1px solid var(--border);
       transition: background var(--t);
     }
     .service-item:last-child { border-bottom: none; }
-    .service-item:hover { background: rgba(255,255,255,0.02); }
-    .service-item-name { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); font-weight: 400; }
-    .service-item-arrow { width: 20px; height: 1px; background: var(--border); position: relative; transition: width var(--t), background var(--t); flex-shrink: 0; margin-left: 16px; }
+    .service-item:hover { background: rgba(255,255,255,0.03); }
+    .service-item-name { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); font-weight: 400; }
+    .service-item-arrow { width: 20px; height: 1px; background: #333; position: relative; transition: width var(--t), background var(--t); flex-shrink: 0; margin-left: 16px; }
     .service-item-arrow::after {
       content: ''; position: absolute; right: 0; top: -3px; width: 5px; height: 5px;
-      border-right: 1px solid var(--border); border-top: 1px solid var(--border);
+      border-right: 1px solid #333; border-top: 1px solid #333;
       transform: rotate(45deg); transition: border-color var(--t);
     }
     .service-item:hover .service-item-arrow { width: 32px; background: var(--light-muted); }
     .service-item:hover .service-item-arrow::after { border-color: var(--light-muted); }
-    .industries { margin-top: 32px; }
+    .industries { margin-top: 28px; }
     .industries-label { display: block; font-size: 0.56rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; font-weight: 400; }
 
-    .packages { display: flex; flex-direction: column; gap: 2px; background: var(--border); border: 1px solid var(--border); }
-    .pkg { background: var(--black); padding: 40px 36px; position: relative; overflow: hidden; transition: background var(--t); }
+    .packages { display: flex; flex-direction: column; gap: 14px; }
+    .pkg { background: var(--black); border: 1px solid #262626; padding: 34px 32px; position: relative; overflow: hidden; transition: border-color var(--t), transform var(--t); }
+    .pkg:hover { border-color: #3a3a3a; transform: translateY(-2px); }
     .pkg::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: var(--pure-white); transform: scaleX(0); transform-origin: left; transition: transform .55s ease;
+      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
+      background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .55s ease;
     }
-    .pkg:hover::before { transform: scaleX(1); }
-    .pkg:hover { background: #0b0b0b; }
-    .pkg-num { font-family: var(--serif); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; display: block; margin-bottom: 20px; }
-    .pkg-name { font-family: var(--serif); font-size: clamp(1.7rem, 2.6vw, 2.3rem); font-weight: 300; color: var(--pure-white); line-height: 1.1; margin-bottom: 14px; }
-    .pkg-name em { font-style: italic; color: rgba(255,255,255,0.6); }
-    .pkg-desc { font-size: 0.84rem; line-height: 1.85; color: var(--light-muted); margin-bottom: 22px; }
-    .pkg-list { list-style: none; margin-bottom: 28px; }
+    .pkg:hover::before { transform: scaleY(1); }
+    .pkg-num { font-family: var(--serif); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; display: block; margin-bottom: 16px; }
+    .pkg-name { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 300; color: var(--pure-white); line-height: 1.1; margin-bottom: 12px; }
+    .pkg-name em { font-style: italic; color: rgba(255,255,255,0.7); }
+    .pkg-desc { font-size: 0.82rem; line-height: 1.8; color: var(--light-muted); margin-bottom: 18px; }
+    .pkg-list { list-style: none; margin-bottom: 24px; }
     .pkg-list li {
-      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-      display: flex; align-items: baseline; gap: 12px; padding: 6px 0; line-height: 1.6;
+      font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+      display: flex; align-items: baseline; gap: 12px; padding: 5px 0; line-height: 1.6;
     }
     .pkg-list li::before { content: ''; width: 14px; height: 1px; background: var(--muted); flex-shrink: 0; transform: translateY(-3px); }
     .pkg-cta {
@@ -456,93 +482,105 @@
       transition: border-color var(--t), gap var(--t);
     }
     .pkg-cta:hover { border-color: var(--pure-white); gap: 16px; }
-    .pkg-note { margin-top: 20px; font-size: 0.78rem; line-height: 1.8; color: var(--muted); }
+    .pkg-note { margin-top: 18px; font-size: 0.76rem; line-height: 1.8; color: var(--muted); }
 
-    /* ── APPROACH ─────────────────────────────────── */
-    #approach { background: var(--off-black); }
-    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); margin-top: 48px; }
-    .pillar { padding: 40px 32px 44px; border-right: 1px solid var(--border); position: relative; overflow: hidden; }
+    /* ── 04 APPROACH (light section) ──────────────── */
+    #approach {
+      background: #eeeae3;
+      --pure-white: #0b0b0b;
+      --white: #1a1a1a;
+      --light-muted: #4a4741;
+      --muted: #77716a;
+      --border: #d3cec4;
+      --accent: #1d4ed8;
+      border-top: none;
+    }
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #c9c4ba; margin-top: 40px; background: #f6f3ee; }
+    .pillar { padding: 34px 30px 38px; border-right: 1px solid #c9c4ba; position: relative; overflow: hidden; }
     .pillar:last-child { border-right: none; }
     .pillar::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: var(--pure-white); transform: scaleX(0); transform-origin: left; transition: transform .55s ease;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .55s ease;
     }
     .pillar:hover::before { transform: scaleX(1); }
-    .pillar-num { font-family: var(--serif); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; display: block; margin-bottom: 28px; }
-    .pillar-word { font-family: var(--serif); font-size: clamp(1.7rem, 2.6vw, 2.3rem); font-weight: 300; color: var(--pure-white); line-height: 1.1; margin-bottom: 18px; }
-    .pillar-desc { font-size: 0.84rem; line-height: 1.9; color: var(--light-muted); margin-bottom: 20px; }
-    .pillar-tag { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
-    .approach-line { margin-top: 48px; font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 300; font-style: italic; color: var(--light-muted); line-height: 1.6; text-align: center; }
-    .approach-line strong { font-weight: 400; color: var(--pure-white); font-style: normal; }
+    .pillar-num {
+      display: block;
+      font-family: var(--serif); font-style: italic;
+      font-size: 4.4rem; line-height: 1; font-weight: 300;
+      color: transparent; -webkit-text-stroke: 1px rgba(11,11,11,0.35);
+      margin-bottom: 22px;
+    }
+    .pillar-word { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 400; color: var(--pure-white); line-height: 1.1; margin-bottom: 14px; }
+    .pillar-desc { font-size: 0.84rem; line-height: 1.85; color: var(--light-muted); margin-bottom: 18px; }
+    .pillar-tag { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .approach-line { margin-top: 40px; font-family: var(--serif); font-size: clamp(1.15rem, 1.8vw, 1.5rem); font-weight: 300; font-style: italic; color: var(--light-muted); line-height: 1.6; text-align: center; }
+    .approach-line strong { font-weight: 500; color: var(--pure-white); font-style: normal; }
 
-    /* ── WORK ─────────────────────────────────────── */
-    .work-intro { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; gap: 40px; }
-    .work-intro .heading { margin-bottom: 0; }
-    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); }
-    .work-card { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--card-bg); display: block; }
-    .work-card-bg { position: absolute; inset: 0; background: linear-gradient(145deg, #141414 0%, #0a0a0a 100%); }
-    .work-thumb {
+    /* ── 05 WORK (black, vertical videos) ─────────── */
+    .work-intro { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px; gap: 40px; }
+    .work-intro .heading { margin-bottom: 10px; }
+    .work-note { font-size: 0.8rem; color: var(--muted); }
+    .reels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .reel { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .reel-frame {
+      position: relative;
+      aspect-ratio: 9 / 19;
+      background: #101010;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .reel-frame::before {
+      content: attr(data-loading);
       position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      filter: grayscale(100%) brightness(0.6);
-      transition: transform .7s var(--ease), filter .7s ease;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
     }
-    .work-card:hover .work-thumb { transform: scale(1.04); filter: grayscale(60%) brightness(0.5); }
-    .work-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--t); }
-    .work-card:hover .work-play, .work-card.no-thumb .work-play { opacity: 1; }
-    .play-ring { width: 58px; height: 58px; border: 1px solid rgba(255,255,255,0.55); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform var(--t); }
-    .work-card:hover .play-ring { transform: scale(1.08); }
-    .play-ring svg { width: 16px; height: 16px; fill: rgba(255,255,255,0.9); margin-left: 3px; }
-    .work-label {
-      position: absolute; top: 16px; left: 16px;
-      font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15);
-      padding: 4px 10px; font-weight: 400; background: rgba(8,8,8,0.4); z-index: 2;
-    }
-    .work-info {
-      position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 24px;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-      transform: translateY(6px); opacity: 0; transition: opacity var(--t), transform var(--t); z-index: 2;
-    }
-    .work-card:hover .work-info, .work-card.no-thumb .work-info { opacity: 1; transform: translateY(0); }
-    .work-info-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; color: var(--pure-white); margin-bottom: 3px; }
-    .work-info-cat { font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    .reel-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; }
+    .reel-cap { display: flex; flex-direction: column; gap: 4px; }
+    .reel-plat { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .reel-title { font-family: var(--serif); font-size: 1.05rem; color: var(--pure-white); font-weight: 300; line-height: 1.3; }
+    .reel-link { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color var(--t); }
+    .reel-link:hover { color: var(--white); }
     .text-link {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted); border: 1px solid var(--border); padding: 12px 22px; flex-shrink: 0;
+      color: var(--light-muted); border: 1px solid #2a2a2a; padding: 12px 22px; flex-shrink: 0;
       transition: color var(--t), border-color var(--t);
     }
     .text-link:hover { color: var(--white); border-color: var(--light-muted); }
     .text-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.5; transition: transform var(--t); }
     .text-link:hover svg { transform: translateX(3px); }
 
-    /* ── PARTNERS ─────────────────────────────────── */
-    #partners { background: var(--off-black); }
-    .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); margin-top: 48px; }
-    .partner { padding: 40px 32px 36px; border-right: 1px solid var(--border); display: flex; flex-direction: column; position: relative; overflow: hidden; }
-    .partner:last-child { border-right: none; }
-    .partner::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: var(--pure-white); transform: scaleX(0); transform-origin: left; transition: transform .55s ease;
+    /* ── 06 PARTNERS (glow cards) ─────────────────── */
+    #partners { background: #0d0d10; }
+    .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .partner {
+      padding: 34px 28px 30px;
+      border: 1px solid #222;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      background: radial-gradient(ellipse 90% 55% at 50% 0%, rgba(var(--glow), 0.17), transparent 72%), #0a0a0b;
+      transition: border-color var(--t), transform var(--t);
     }
-    .partner:hover::before { transform: scaleX(1); }
-    .partner-logo { height: 96px; display: flex; align-items: center; justify-content: flex-start; margin-bottom: 28px; }
-    .partner-logo img { max-height: 72px; max-width: 190px; width: auto; height: auto; object-fit: contain; display: block; }
-    .partner-role { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 10px; }
-    .partner-name { font-family: var(--serif); font-size: 1.7rem; font-weight: 300; color: var(--pure-white); line-height: 1.15; margin-bottom: 14px; }
-    .partner-desc { font-size: 0.84rem; line-height: 1.85; color: var(--light-muted); margin-bottom: 24px; flex: 1; }
-    .partner-result { border-top: 1px solid var(--border); padding-top: 16px; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--white); line-height: 1.7; min-height: 56px; }
+    .partner:hover { border-color: rgba(var(--glow), 0.55); transform: translateY(-3px); }
+    .partner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: rgb(var(--glow)); opacity: 0.85; }
+    .partner-logo { height: 120px; display: flex; align-items: center; justify-content: flex-start; margin-bottom: 22px; }
+    .partner-logo img { max-height: 100px; max-width: 200px; width: auto; height: auto; object-fit: contain; display: block; }
+    .partner-logo img.screen { mix-blend-mode: screen; max-height: 124px; max-width: 220px; margin-left: -14px; }
+    .partner-role { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgb(var(--glow)); font-weight: 500; margin-bottom: 10px; }
+    .partner-name { font-family: var(--serif); font-size: 1.55rem; font-weight: 300; color: var(--pure-white); line-height: 1.15; margin-bottom: 12px; }
+    .partner-desc { font-size: 0.82rem; line-height: 1.8; color: var(--light-muted); margin-bottom: 22px; flex: 1; }
+    .partner-result { border-top: 1px solid #222; padding-top: 14px; font-size: 0.7rem; letter-spacing: 0.06em; color: var(--white); line-height: 1.7; min-height: 56px; }
 
-    .past { margin-top: 96px; text-align: center; }
-    .past-label { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; font-weight: 400; }
-    .past-text { max-width: 640px; margin: 0 auto 40px; font-size: 0.9rem; line-height: 1.9; color: var(--light-muted); }
+    .past { margin-top: 80px; text-align: center; }
+    .past-label { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; font-weight: 400; }
+    .past-text { max-width: 620px; margin: 0 auto 36px; font-size: 0.88rem; line-height: 1.9; color: var(--light-muted); }
     .logo-carousel-wrap {
       background: var(--black);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 32px 0; overflow: hidden; position: relative;
-      margin: 0 -56px;
+      padding: 28px 0; overflow: hidden; position: relative;
+      width: 100vw; margin-left: calc(50% - 50vw);
     }
     .logo-carousel-wrap::before, .logo-carousel-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
     .logo-carousel-wrap::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
@@ -556,62 +594,77 @@
     .logo-item.no-invert img { filter: grayscale(0.3) brightness(1.4) opacity(0.6); }
     .logo-item.no-invert:hover img { filter: grayscale(0) brightness(1) opacity(1); }
 
-    /* ── CONTACT ──────────────────────────────────── */
-    #contact { text-align: center; padding-top: 128px; padding-bottom: 128px; }
-    .contact-pre { display: block; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; font-weight: 400; }
-    #contact .heading { font-size: clamp(48px, 8vw, 104px); margin-bottom: 32px; }
-    .contact-sub { max-width: 520px; margin: 0 auto 48px; font-size: 0.92rem; line-height: 1.9; color: var(--light-muted); }
+    /* ── 07 CONTACT (blue glow) ───────────────────── */
+    #contact {
+      text-align: center;
+      padding-top: 104px; padding-bottom: 112px;
+      background:
+        radial-gradient(900px 420px at 50% 100%, rgba(59,130,246,0.26), transparent 70%),
+        #080808;
+    }
+    #contact .heading { font-size: clamp(44px, 6vw, 80px); margin-bottom: 28px; }
+    .contact-sub { max-width: 500px; margin: 0 auto 40px; font-size: 0.9rem; line-height: 1.9; color: var(--light-muted); }
     .contact-email {
       display: inline-block;
       font-family: var(--serif);
-      font-size: clamp(1.4rem, 3.6vw, 2.6rem);
+      font-size: clamp(1.3rem, 3vw, 2.2rem);
       font-weight: 300;
       color: var(--pure-white);
-      border-bottom: 1px solid rgba(255,255,255,0.3);
+      border-bottom: 1px solid rgba(255,255,255,0.35);
       padding-bottom: 8px;
       word-break: break-all;
       transition: border-color var(--t), color var(--t);
     }
     .contact-email:hover { border-color: var(--pure-white); }
-    .contact-meta { margin-top: 40px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .contact-meta { margin-top: 36px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light-muted); }
     .contact-meta a { transition: color var(--t); }
-    .contact-meta a:hover { color: var(--white); }
-    .soc-sep { width: 1px; height: 14px; background: var(--border); }
+    .contact-meta a:hover { color: var(--pure-white); }
+    .soc-sep { width: 1px; height: 14px; background: #333; }
 
     /* ── FOOTER ───────────────────────────────────── */
-    footer { border-top: 1px solid var(--border); padding: 24px 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    footer { border-top: 1px solid var(--border); padding: 22px max(var(--gutter), calc((100% - var(--wrap)) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .footer-brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 0.85rem; font-weight: 300; letter-spacing: 0.12em; color: var(--muted); }
-    .footer-brand img { width: 28px; height: 28px; object-fit: contain; opacity: 0.8; }
+    .footer-brand img { width: 26px; height: 26px; object-fit: contain; opacity: 0.8; }
     .footer-mid, .footer-right { font-size: 0.58rem; letter-spacing: 0.14em; color: var(--muted); }
     .footer-right { text-transform: uppercase; }
 
     /* ── RESPONSIVE ───────────────────────────────── */
     @media (max-width: 1100px) {
-      section { padding: 88px 36px; }
-      nav, nav.scrolled { padding-left: 36px; padding-right: 36px; }
-      footer { padding: 20px 36px; }
-      .logo-carousel-wrap { margin: 0 -36px; }
-      .nav-links { gap: 24px; }
-      .nav-right { gap: 24px; }
+      :root { --gutter: 36px; }
+      .nav-links { gap: 22px; }
+      .nav-right { gap: 22px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .metric:nth-child(2) { border-right: none; }
       .metric:nth-child(3), .metric:nth-child(4) { border-top: 1px solid var(--border); }
-      .service-split { gap: 48px; }
+      .service-split { gap: 44px; }
+      /* videos become a swipe row */
+      .reels {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(240px, 34%);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        margin: 0 calc(-1 * var(--gutter));
+        padding: 0 var(--gutter) 8px;
+        gap: 14px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .reel { scroll-snap-align: start; }
     }
     @media (max-width: 900px) {
-      #about, .service-split, .results-head { grid-template-columns: 1fr; gap: 44px; }
-      .about-img-wrap { max-width: 320px; margin: 0 auto; width: 100%; }
+      #about, .service-split, .results-head { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-wrap { max-width: 320px; margin: 0 auto; width: 100%; aspect-ratio: 3/4; }
       .pillars, .partner-grid { grid-template-columns: 1fr; }
-      .pillar, .partner { border-right: none; border-bottom: 1px solid var(--border); }
-      .pillar:last-child, .partner:last-child { border-bottom: none; }
-      .case-strip { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; }
+      .pillar { border-right: none; border-bottom: 1px solid #c9c4ba; }
+      .pillar:last-child { border-bottom: none; }
+      .case-strip { grid-template-columns: 1fr; gap: 18px; padding: 26px 22px; }
       .case-source { text-align: left; }
-      .work-grid { grid-template-columns: 1fr; }
-      .work-intro { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .work-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .reels { grid-auto-columns: minmax(230px, 46%); }
     }
     @media (max-width: 860px) {
-      nav { padding: 18px 24px; }
-      nav.scrolled { padding: 14px 24px; }
+      nav { padding: 18px var(--gutter); }
+      nav.scrolled { padding: 13px var(--gutter); }
       .nav-right { gap: 12px; }
       .nav-toggle { display: flex; }
       .nav-links { display: none; }
@@ -625,12 +678,14 @@
       .nav-toggle, .lang-toggle { position: relative; z-index: 101; }
     }
     @media (max-width: 768px) {
-      section { padding: 68px 24px; }
-      .logo-carousel-wrap { margin: 0 -24px; }
-      footer { padding: 20px 24px; flex-direction: column; text-align: center; }
-      .metric { padding: 32px 20px 28px; }
+      :root { --gutter: 24px; }
+      section { padding-top: 64px; padding-bottom: 68px; }
+      footer { flex-direction: column; text-align: center; }
+      .metric { padding: 30px 20px 26px; }
       .pkg, .pillar, .partner { padding-left: 24px; padding-right: 24px; }
-      #contact { padding-top: 88px; padding-bottom: 88px; }
+      #contact { padding-top: 80px; padding-bottom: 88px; }
+      .sec-head { margin-bottom: 36px; }
+      .reels { grid-auto-columns: 74%; }
     }
     @media (max-width: 480px) {
       .hero-name { font-size: clamp(54px, 17vw, 84px); }
@@ -642,6 +697,7 @@
       .metric { border-right: none; border-bottom: 1px solid var(--border); }
       .metric:last-child { border-bottom: none; }
       .metric:nth-child(3), .metric:nth-child(4) { border-top: none; }
+      .partner-logo img.screen { margin-left: -8px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -721,14 +777,14 @@
     </div>
   </div>
 
-  <!-- ──────────── ABOUT ──────────── -->
+  <!-- ──────────── 01 ABOUT ──────────── -->
   <section id="about">
     <div class="about-img-wrap reveal">
       <img src="images/jaymes.jpg" alt="Jaymes Verduzco — marketing coordinator and content creator" />
       <div class="about-img-frame"></div>
     </div>
     <div>
-      <p class="section-label" data-i18n="about_label">About</p>
+      <div class="sec-head"><span class="sec-num">01</span><span class="sec-name" data-i18n="about_label">About</span></div>
       <h2 class="about-heading reveal d1" data-i18n="about_heading">
         I turn content<br /><em><span class="lens-underline">into customers.</span></em>
       </h2>
@@ -761,9 +817,9 @@
     </div>
   </section>
 
-  <!-- ──────────── RESULTS ──────────── -->
+  <!-- ──────────── 02 RESULTS ──────────── -->
   <section id="results">
-    <p class="section-label" data-i18n="results_label">Results</p>
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-name" data-i18n="results_label">Results</span></div>
     <div class="results-head">
       <h2 class="heading reveal" data-i18n="results_heading">Real results,<br /><em>not just views.</em></h2>
       <p class="blurb reveal d1" data-i18n="results_intro">
@@ -791,23 +847,23 @@
       <div class="metric reveal d3">
         <span class="metric-num" data-i18n="m4_num">Record</span>
         <span class="metric-label" data-i18n="m4_label">Biggest Sale Ever</span>
-        <span class="metric-proof" data-i18n="m4_proof">SoCal Auto Touch Up · after ad adjustments</span>
+        <span class="metric-proof" data-i18n="m4_proof">SoCal Auto Touch Up · 5+ years in business, after ad adjustments</span>
       </div>
     </div>
 
     <div class="case-strip reveal">
-      <img src="images/logo-socal.png" alt="SoCal Auto Touch Up" class="case-logo" />
+      <img src="images/logo-socal.webp" alt="SoCal Auto Touch Up" class="case-logo" />
       <p class="case-text" data-i18n="case_text">
-        Two short-form videos a week plus paid ads. After some ad adjustments, the business had its
-        biggest sale ever, and one video reached almost 20K organic views.
+        Two short-form videos a week plus paid ads. After some ad adjustments, a business open for
+        5+ years had its biggest sale ever, and one video reached almost 20K organic views.
       </p>
       <span class="case-source" data-i18n="case_source">SoCal Auto Touch Up<br />Automotive</span>
     </div>
   </section>
 
-  <!-- ──────────── SERVICES ──────────── -->
+  <!-- ──────────── 03 SERVICES ──────────── -->
   <section id="services">
-    <p class="section-label" data-i18n="services_label">Services</p>
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-name" data-i18n="services_label">Services</span></div>
     <div class="service-split">
 
       <div>
@@ -865,9 +921,9 @@
     </div>
   </section>
 
-  <!-- ──────────── APPROACH ──────────── -->
+  <!-- ──────────── 04 APPROACH (light) ──────────── -->
   <section id="approach">
-    <p class="section-label" data-i18n="approach_label">Approach</p>
+    <div class="sec-head"><span class="sec-num">04</span><span class="sec-name" data-i18n="approach_label">Approach</span></div>
     <h2 class="heading reveal" data-i18n="approach_heading">How I create<br /><em>every video.</em></h2>
 
     <div class="pillars">
@@ -896,12 +952,13 @@
     </p>
   </section>
 
-  <!-- ──────────── WORK ──────────── -->
+  <!-- ──────────── 05 WORK ──────────── -->
   <section id="work">
+    <div class="sec-head"><span class="sec-num">05</span><span class="sec-name" data-i18n="work_label">Selected Work</span></div>
     <div class="work-intro">
       <div>
-        <p class="section-label" data-i18n="work_label">Selected Work</p>
         <h2 class="heading reveal" data-i18n="work_heading">The work<br /><em>speaks.</em></h2>
+        <p class="work-note reveal d1" data-i18n="work_note">Tap a video to play it right here.</p>
       </div>
       <a href="https://www.instagram.com/filmedbyjaymes/" target="_blank" rel="noopener" class="text-link reveal">
         <span data-i18n="work_more">More on Instagram</span>
@@ -909,77 +966,77 @@
       </a>
     </div>
 
-    <!-- Thumbnails: drop images named work-1.jpg … work-4.jpg into /images. Until then a clean placeholder shows. -->
-    <div class="work-grid">
+    <!-- Official TikTok / Instagram embeds: the platforms supply the cover image and player. -->
+    <div class="reels">
 
-      <a href="https://www.tiktok.com/@amsccollege/video/7681039057501031693" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="work-card-bg"></div>
-        <img class="work-thumb" src="images/work-1.jpg" alt="AMSC TikTok" />
-        <span class="work-label">TikTok</span>
-        <div class="work-play"><div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        <div class="work-info">
-          <p class="work-info-title">AMSC</p>
-          <p class="work-info-cat" data-i18n="w1_cat">Organic · 50K views</p>
+      <figure class="reel reveal">
+        <div class="reel-frame" data-loading="Loading TikTok…">
+          <iframe src="https://www.tiktok.com/embed/v2/7681039057501031693" title="AMSC TikTok video" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
-      </a>
+        <figcaption class="reel-cap">
+          <span class="reel-plat">TikTok</span>
+          <span class="reel-title" data-i18n="r1_title">AMSC · 50K views, organic</span>
+          <a class="reel-link" href="https://www.tiktok.com/@amsccollege/video/7681039057501031693" target="_blank" rel="noopener" data-i18n="open_tt">Open on TikTok ↗</a>
+        </figcaption>
+      </figure>
 
-      <a href="https://www.instagram.com/reel/Dez7k2PSCSF/" target="_blank" rel="noopener" class="work-card reveal d1">
-        <div class="work-card-bg"></div>
-        <img class="work-thumb" src="images/work-2.jpg" alt="Instagram Reel" />
-        <span class="work-label">Instagram</span>
-        <div class="work-play"><div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        <div class="work-info">
-          <p class="work-info-title" data-i18n="w_reel">Instagram Reel</p>
-          <p class="work-info-cat" data-i18n="w_cat">Short-Form · Organic</p>
+      <figure class="reel reveal d1">
+        <div class="reel-frame" data-loading="Loading Instagram…">
+          <iframe src="https://www.instagram.com/reel/Dez7k2PSCSF/embed/" title="Instagram Reel" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
-      </a>
+        <figcaption class="reel-cap">
+          <span class="reel-plat">Instagram</span>
+          <span class="reel-title" data-i18n="r_ig">Instagram Reel</span>
+          <a class="reel-link" href="https://www.instagram.com/reel/Dez7k2PSCSF/" target="_blank" rel="noopener" data-i18n="open_ig">Open on Instagram ↗</a>
+        </figcaption>
+      </figure>
 
-      <a href="https://www.instagram.com/reel/DeTA_ypNT7e/" target="_blank" rel="noopener" class="work-card reveal">
-        <div class="work-card-bg"></div>
-        <img class="work-thumb" src="images/work-3.jpg" alt="Instagram Reel" />
-        <span class="work-label">Instagram</span>
-        <div class="work-play"><div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        <div class="work-info">
-          <p class="work-info-title" data-i18n="w_reel2">Instagram Reel</p>
-          <p class="work-info-cat" data-i18n="w_cat2">Short-Form · Organic</p>
+      <figure class="reel reveal d2">
+        <div class="reel-frame" data-loading="Loading Instagram…">
+          <iframe src="https://www.instagram.com/reel/DeTA_ypNT7e/embed/" title="Instagram Reel" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
-      </a>
+        <figcaption class="reel-cap">
+          <span class="reel-plat">Instagram</span>
+          <span class="reel-title" data-i18n="r_ig2">Instagram Reel</span>
+          <a class="reel-link" href="https://www.instagram.com/reel/DeTA_ypNT7e/" target="_blank" rel="noopener" data-i18n="open_ig2">Open on Instagram ↗</a>
+        </figcaption>
+      </figure>
 
-      <a href="https://www.instagram.com/reel/DN0514uQmHh/" target="_blank" rel="noopener" class="work-card reveal d1">
-        <div class="work-card-bg"></div>
-        <img class="work-thumb" src="images/work-4.jpg" alt="Instagram Reel" />
-        <span class="work-label">Instagram</span>
-        <div class="work-play"><div class="play-ring"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        <div class="work-info">
-          <p class="work-info-title" data-i18n="w_reel3">Instagram Reel</p>
-          <p class="work-info-cat" data-i18n="w_cat3">Short-Form · Organic</p>
+      <figure class="reel reveal d3">
+        <div class="reel-frame" data-loading="Loading Instagram…">
+          <iframe src="https://www.instagram.com/reel/DN0514uQmHh/embed/" title="Instagram Reel" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
-      </a>
+        <figcaption class="reel-cap">
+          <span class="reel-plat">Instagram</span>
+          <span class="reel-title" data-i18n="r_ig3">Instagram Reel</span>
+          <a class="reel-link" href="https://www.instagram.com/reel/DN0514uQmHh/" target="_blank" rel="noopener" data-i18n="open_ig3">Open on Instagram ↗</a>
+        </figcaption>
+      </figure>
 
     </div>
   </section>
 
-  <!-- ──────────── PARTNERS ──────────── -->
+  <!-- ──────────── 06 PARTNERS ──────────── -->
   <section id="partners">
-    <p class="section-label" data-i18n="partners_label">Current Partners</p>
-    <h2 class="heading reveal" data-i18n="partners_heading">Who I work<br /><em>with.</em></h2>
+    <div class="sec-head"><span class="sec-num">06</span><span class="sec-name" data-i18n="partners_label">Current Partners</span></div>
+    <h2 class="heading reveal" data-i18n="partners_heading" style="margin-bottom:40px;">Who I work<br /><em>with.</em></h2>
 
     <div class="partner-grid">
-      <div class="partner reveal">
-        <div class="partner-logo"><img src="images/logo-socal.png" alt="SoCal Auto Touch Up" /></div>
+      <div class="partner reveal" style="--glow: 255,45,85;">
+        <div class="partner-logo"><img class="screen" src="images/logo-socal.webp" alt="SoCal Auto Touch Up" /></div>
         <span class="partner-role" data-i18n="pa1_role">Content + Paid Ads</span>
         <h3 class="partner-name">SoCal Auto Touch Up</h3>
-        <p class="partner-desc" data-i18n="pa1_desc">Two short-form videos a week plus ad management for an automotive business.</p>
+        <p class="partner-desc" data-i18n="pa1_desc">Two short-form videos a week plus ad management for an automotive business open 5+ years.</p>
         <p class="partner-result" data-i18n="pa1_result">Biggest sale ever after ad adjustments</p>
       </div>
-      <div class="partner reveal d1">
+      <div class="partner reveal d1" style="--glow: 79,140,247;">
         <div class="partner-logo"><img src="images/logo-amsc.png" alt="AMSC" /></div>
         <span class="partner-role" data-i18n="pa2_role">Marketing Coordinator</span>
         <h3 class="partner-name">AMSC</h3>
         <p class="partner-desc" data-i18n="pa2_desc">Social content and marketing coordination for the college.</p>
         <p class="partner-result" data-i18n="pa2_result">50K TikTok views · 40K Reel views, both organic</p>
       </div>
-      <div class="partner reveal d2">
+      <div class="partner reveal d2" style="--glow: 210,210,215;">
         <div class="partner-logo"><img src="images/logo-promax-white.png" alt="Promax Power" /></div>
         <span class="partner-role" data-i18n="pa3_role">Google Ads Management</span>
         <h3 class="partner-name">Promax Power</h3>
@@ -1009,9 +1066,9 @@
     </div>
   </section>
 
-  <!-- ──────────── CONTACT ──────────── -->
+  <!-- ──────────── 07 CONTACT ──────────── -->
   <section id="contact">
-    <span class="contact-pre" data-i18n="contact_pre">Get in Touch</span>
+    <div class="sec-head center"><span class="sec-num">07</span><span class="sec-name" data-i18n="contact_pre">Get in Touch</span></div>
     <h2 class="heading reveal" data-i18n="contact_heading">Let's grow<br /><em>your business.</em></h2>
     <p class="contact-sub reveal d1" data-i18n="contact_sub">
       Email me what your business does and what you want to grow. We'll set up a call from there.
@@ -1076,7 +1133,7 @@
     // ── Scroll reveal ───────────────────────────────
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
     // ── Hero image zoom-in ──────────────────────────
@@ -1084,14 +1141,6 @@
     const onLoad = () => heroImg.classList.add('loaded');
     heroImg.addEventListener('load', onLoad);
     if (heroImg.complete) onLoad();
-
-    // ── Work thumbnails: fall back to a clean placeholder ──
-    document.querySelectorAll('.work-card').forEach(card => {
-      const img = card.querySelector('.work-thumb');
-      const miss = () => { img.style.display = 'none'; card.classList.add('no-thumb'); };
-      img.addEventListener('error', miss);
-      if (img.complete && img.naturalWidth === 0) miss();
-    });
 
     // ── Metric counters ─────────────────────────────
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1137,8 +1186,8 @@
       m1_label: 'Vistas en TikTok', m1_proof: 'AMSC · orgánico',
       m2_label: 'Vistas en un Reel', m2_proof: 'AMSC · orgánico',
       m3_label: 'Vistas en un Video', m3_proof: 'SoCal Auto Touch Up · orgánico',
-      m4_num: 'Récord', m4_label: 'Mayor Venta Hasta Hoy', m4_proof: 'SoCal Auto Touch Up · tras ajustes en anuncios',
-      case_text: 'Dos videos cortos por semana más anuncios pagados. Después de algunos ajustes en los anuncios, el negocio tuvo su mayor venta hasta hoy y un video casi llegó a 20K vistas orgánicas.',
+      m4_num: 'Récord', m4_label: 'Mayor Venta Hasta Hoy', m4_proof: 'SoCal Auto Touch Up · más de 5 años en el negocio, tras ajustes en anuncios',
+      case_text: 'Dos videos cortos por semana más anuncios pagados. Después de algunos ajustes en los anuncios, un negocio con más de 5 años abierto tuvo su mayor venta hasta hoy, y un video casi llegó a 20K vistas orgánicas.',
       case_source: 'SoCal Auto Touch Up<br />Automotriz',
       services_label: 'Servicios',
       services_heading: 'Hecho para<br /><em>tu negocio.</em>',
@@ -1166,15 +1215,16 @@
       approach_line: '<strong>Entretén</strong> para que te vean. <strong>Informa</strong> para que confíen. <strong>Vende</strong> para conseguir clientes.',
       work_label: 'Trabajo Destacado',
       work_heading: 'El trabajo<br /><em>habla.</em>',
+      work_note: 'Toca un video para verlo aquí mismo.',
       work_more: 'Más en Instagram',
-      w1_cat: 'Orgánico · 50K vistas',
-      w_reel: 'Reel de Instagram', w_cat: 'Contenido corto · Orgánico',
-      w_reel2: 'Reel de Instagram', w_cat2: 'Contenido corto · Orgánico',
-      w_reel3: 'Reel de Instagram', w_cat3: 'Contenido corto · Orgánico',
+      r1_title: 'AMSC · 50K vistas, orgánico',
+      r_ig: 'Reel de Instagram', r_ig2: 'Reel de Instagram', r_ig3: 'Reel de Instagram',
+      open_tt: 'Abrir en TikTok ↗',
+      open_ig: 'Abrir en Instagram ↗', open_ig2: 'Abrir en Instagram ↗', open_ig3: 'Abrir en Instagram ↗',
       partners_label: 'Socios Actuales',
       partners_heading: 'Con quién<br /><em>trabajo.</em>',
       pa1_role: 'Contenido + Anuncios Pagados',
-      pa1_desc: 'Dos videos cortos por semana y manejo de anuncios para un negocio automotriz.',
+      pa1_desc: 'Dos videos cortos por semana y manejo de anuncios para un negocio automotriz con más de 5 años abierto.',
       pa1_result: 'La mayor venta hasta hoy tras ajustes en anuncios',
       pa2_role: 'Coordinador de Marketing',
       pa2_desc: 'Contenido para redes y coordinación de marketing de la universidad.',
