@@ -198,7 +198,7 @@
       width: 100%; height: 100%;
       object-fit: cover;
       object-position: center 15%;
-      filter: grayscale(100%) brightness(0.2) contrast(1.1);
+      filter: grayscale(100%) brightness(0.3) contrast(1.1);
       transform: scale(1.06);
       transition: transform 9s ease;
     }
@@ -253,6 +253,9 @@
       transition: background var(--t), color var(--t), border-color var(--t);
     }
     .btn:hover { background: transparent; color: var(--pure-white); }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn-ghost { background: transparent; color: var(--pure-white); border-color: rgba(255,255,255,0.35); }
+    .btn-ghost:hover { background: var(--pure-white); color: var(--black); border-color: var(--pure-white); }
     .btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.6; }
 
     .hero-scroll {
@@ -425,14 +428,7 @@
       gap: 36px;
       align-items: center;
     }
-    .case-logo, .partner-logo img.screen {
-      mix-blend-mode: screen;
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
-      -webkit-mask-composite: source-in;
-      mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent), linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
-      mask-composite: intersect;
-    }
-    .case-logo { width: 140px; height: auto; display: block; }
+    .case-logo { width: 112px; height: auto; display: block; }
     .case-text { font-family: var(--serif); font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-style: italic; font-weight: 300; line-height: 1.55; color: var(--white); }
     .case-source { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: #7f8aa3; text-align: right; line-height: 1.8; }
 
@@ -442,54 +438,23 @@
       background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
       background-size: 22px 22px;
     }
-    .service-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-    .service-items { display: flex; flex-direction: column; border: 1px solid var(--border); margin-top: 32px; background: rgba(8,8,8,0.85); }
-    .service-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 22px;
-      border-bottom: 1px solid var(--border);
-      transition: background var(--t);
-    }
-    .service-item:last-child { border-bottom: none; }
-    .service-item:hover { background: rgba(255,255,255,0.03); }
-    .service-item-name { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); font-weight: 400; }
-    .service-item-arrow { width: 20px; height: 1px; background: #333; position: relative; transition: width var(--t), background var(--t); flex-shrink: 0; margin-left: 16px; }
-    .service-item-arrow::after {
-      content: ''; position: absolute; right: 0; top: -3px; width: 5px; height: 5px;
-      border-right: 1px solid #333; border-top: 1px solid #333;
-      transform: rotate(45deg); transition: border-color var(--t);
-    }
-    .service-item:hover .service-item-arrow { width: 32px; background: var(--light-muted); }
-    .service-item:hover .service-item-arrow::after { border-color: var(--light-muted); }
-    .industries { margin-top: 28px; }
-    .industries-label { display: block; font-size: 0.56rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; font-weight: 400; }
-
-    .packages { display: flex; flex-direction: column; gap: 14px; }
-    .pkg { background: var(--black); border: 1px solid #262626; padding: 34px 32px; position: relative; overflow: hidden; transition: border-color var(--t), transform var(--t); }
-    .pkg:hover { border-color: #3a3a3a; transform: translateY(-2px); }
-    .pkg::before {
-      content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
-      background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .55s ease;
-    }
-    .pkg:hover::before { transform: scaleY(1); }
-    .pkg-num { font-family: var(--serif); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.1em; display: block; margin-bottom: 16px; }
-    .pkg-name { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 300; color: var(--pure-white); line-height: 1.1; margin-bottom: 12px; }
-    .pkg-name em { font-style: italic; color: rgba(255,255,255,0.7); }
-    .pkg-desc { font-size: 0.82rem; line-height: 1.8; color: var(--light-muted); margin-bottom: 18px; }
-    .pkg-list { list-style: none; margin-bottom: 24px; }
-    .pkg-list li {
-      font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-      display: flex; align-items: baseline; gap: 12px; padding: 5px 0; line-height: 1.6;
-    }
-    .pkg-list li::before { content: ''; width: 14px; height: 1px; background: var(--muted); flex-shrink: 0; transform: translateY(-3px); }
-    .pkg-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white);
-      border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 5px;
-      transition: border-color var(--t), gap var(--t);
-    }
-    .pkg-cta:hover { border-color: var(--pure-white); gap: 16px; }
-    .pkg-note { margin-top: 18px; font-size: 0.76rem; line-height: 1.8; color: var(--muted); }
+    .svc-top { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; margin-bottom: 48px; }
+    .svc-top .heading { margin-bottom: 0; }
+    .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .svc { background: var(--black); border: 1px solid #262626; padding: 34px 30px 30px; display: flex; flex-direction: column; position: relative; transition: border-color var(--t), transform var(--t); }
+    .svc:hover { border-color: #3d3d3d; transform: translateY(-3px); }
+    .svc-featured { border-color: rgba(79,140,247,0.55); background: linear-gradient(180deg, rgba(79,140,247,0.09), var(--black) 55%); }
+    .svc-featured:hover { border-color: var(--accent); }
+    .svc-num { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--accent); margin-bottom: 18px; }
+    .svc-name { font-family: var(--serif); font-size: clamp(1.7rem, 2.4vw, 2.2rem); font-weight: 300; color: var(--pure-white); line-height: 1.1; margin-bottom: 14px; }
+    .svc-desc { font-size: 0.86rem; line-height: 1.8; color: var(--light-muted); margin-bottom: 22px; }
+    .svc-list { list-style: none; margin-bottom: 28px; flex: 1; }
+    .svc-list li { font-size: 0.8rem; color: var(--white); padding: 11px 0; border-top: 1px solid #1f1f1f; display: flex; gap: 12px; align-items: baseline; }
+    .svc-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; transform: translateY(-1px); }
+    .svc-cta { align-self: flex-start; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; transition: border-color var(--t); }
+    .svc-cta:hover { border-color: var(--pure-white); }
+    .svc-foot { margin-top: 36px; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 0.82rem; color: var(--light-muted); }
+    .svc-ind { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); align-self: center; }
 
     /* ── 04 APPROACH (light section) ──────────────── */
     #approach {
@@ -522,25 +487,15 @@
     .pillar-tag { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
     .chalk-arrow {
       position: absolute;
-      right: -46px; top: 26px;
-      width: 92px; height: 54px;
+      right: -20px; top: 8px;
+      width: 50px; height: auto;
+      transform: rotate(38deg) scale(.6);
+      opacity: 0;
       z-index: 3;
       pointer-events: none;
-      overflow: visible;
+      transition: opacity .6s ease .7s, transform .7s ease .7s;
     }
-    .chalk-arrow path {
-      fill: none;
-      stroke: #d8322b;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 1;
-      stroke-dashoffset: 1;
-    }
-    .chalk-arrow .c1 { stroke-width: 4.2; opacity: .92; }
-    .chalk-arrow .c2 { stroke-width: 2; opacity: .5; transform: translate(1.5px,2px); }
-    .pillar.visible .chalk-arrow path { animation: chalkDraw 1.1s ease-out .6s forwards; }
-    .pillar.visible .chalk-arrow .c2 { animation-delay: .75s; }
-    @keyframes chalkDraw { to { stroke-dashoffset: 0; } }
+    .pillar.visible .chalk-arrow { opacity: 1; transform: rotate(38deg) scale(1); }
     .approach-line { margin-top: 40px; font-family: var(--serif); font-size: clamp(1.15rem, 1.8vw, 1.5rem); font-weight: 300; font-style: italic; color: var(--light-muted); line-height: 1.6; text-align: center; }
     .approach-line strong { font-weight: 500; color: var(--pure-white); font-style: normal; }
 
@@ -549,26 +504,39 @@
     .work-intro .heading { margin-bottom: 10px; }
     .work-note { font-size: 0.8rem; color: var(--muted); }
     .reels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .reel { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-    .reel-frame {
-      position: relative;
-      aspect-ratio: 9 / 19;
-      background: #101010;
+    .reel {
+      position: relative; display: block; aspect-ratio: 9 / 16; overflow: hidden;
       border: 1px solid var(--border);
-      overflow: hidden;
+      background:
+        var(--thumb) center / cover no-repeat,
+        radial-gradient(ellipse 120% 70% at 50% 0%, rgba(79,140,247,0.22), transparent 70%),
+        #0d0d10;
+      transition: border-color var(--t), transform var(--t);
     }
-    .reel-frame::before {
-      content: attr(data-loading);
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+    .reel:hover { border-color: #444; transform: translateY(-4px); }
+    .reel::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.35), transparent 30%, transparent 55%, rgba(0,0,0,0.5)); pointer-events: none; }
+    .reel-plat { position: absolute; top: 14px; left: 14px; z-index: 2; font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); background: rgba(8,8,8,0.7); padding: 6px 10px; font-weight: 500; }
+    .reel-play {
+      position: absolute; top: 38%; left: 50%; z-index: 2; width: 64px; height: 64px; margin: -32px 0 0 -32px;
+      border-radius: 50%; background: rgba(255,255,255,0.92);
+      transition: transform var(--t);
     }
-    .reel-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; }
-    .reel-cap { display: flex; flex-direction: column; gap: 4px; }
-    .reel-plat { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
-    .reel-title { font-family: var(--serif); font-size: 1.05rem; color: var(--pure-white); font-weight: 300; line-height: 1.3; }
-    .reel-link { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); transition: color var(--t); }
-    .reel-link:hover { color: var(--white); }
+    .reel-play::after { content: ''; position: absolute; left: 25px; top: 20px; border-left: 17px solid #0b0b0b; border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
+    .reel:hover .reel-play { transform: scale(1.1); }
+    .reel-paper {
+      position: absolute; left: 6%; right: 6%; bottom: 5%; z-index: 2;
+      padding: 34px 38px 30px;
+      background: url(images/paper-torn.png) center / 100% 100% no-repeat;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45));
+      display: flex; flex-direction: column; gap: 5px; color: #141414;
+      transform: rotate(-1.2deg);
+      transition: transform var(--t);
+    }
+    .reel:nth-child(even) .reel-paper { transform: rotate(1deg); }
+    .reel:hover .reel-paper { transform: rotate(0) translateY(-3px); }
+    .reel-client { font-size: 0.54rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8a2b2b; font-weight: 500; }
+    .reel-title { font-family: var(--serif); font-size: 1.15rem; line-height: 1.2; color: #111; font-weight: 500; }
+    .reel-watch { font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: #444; margin-top: 4px; }
     .text-link {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -594,8 +562,7 @@
     .partner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: rgb(var(--glow)); opacity: 0.85; }
     .partner-logo { height: 120px; display: flex; align-items: center; justify-content: flex-start; margin-bottom: 22px; }
     .partner-logo img { max-height: 100px; max-width: 200px; width: auto; height: auto; object-fit: contain; display: block; }
-    .partner-logo img.screen { mix-blend-mode: screen; max-height: 124px; max-width: 220px; margin-left: -14px; }
-    .partner-role { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgb(var(--glow)); font-weight: 500; margin-bottom: 10px; }
+        .partner-role { font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgb(var(--glow)); font-weight: 500; margin-bottom: 10px; }
     .partner-name { font-family: var(--serif); font-size: 1.55rem; font-weight: 300; color: var(--pure-white); line-height: 1.15; margin-bottom: 12px; }
     .partner-desc { font-size: 0.82rem; line-height: 1.8; color: var(--light-muted); margin-bottom: 22px; flex: 1; }
     .partner-result { border-top: 1px solid #222; padding-top: 14px; font-size: 0.7rem; letter-spacing: 0.06em; color: var(--white); line-height: 1.7; min-height: 56px; }
@@ -617,7 +584,7 @@
     .logo-track:hover { animation-play-state: paused; }
     @keyframes logoScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     .logo-item { display: flex; align-items: center; justify-content: center; padding: 0 48px; height: 72px; flex-shrink: 0; border-right: 1px solid rgba(255,255,255,0.07); }
-    .logo-item img { height: 44px; width: auto; max-width: 160px; object-fit: contain; display: block; filter: invert(1) grayscale(0.2) opacity(0.6); transition: filter .4s ease; }
+    .logo-item img { height: 52px; width: auto; max-width: 160px; object-fit: contain; display: block; filter: invert(1) grayscale(0.2) opacity(0.6); transition: filter .4s ease; }
     .logo-item:hover img { filter: invert(1) grayscale(0) opacity(1); }
     .logo-item.no-invert img { filter: grayscale(0.3) brightness(1.4) opacity(0.6); }
     .logo-item.no-invert:hover img { filter: grayscale(0) brightness(1) opacity(1); }
@@ -664,12 +631,11 @@
       .metrics { grid-template-columns: 1fr 1fr; }
       .metric:nth-child(2) { border-right: none; }
       .metric:nth-child(3), .metric:nth-child(4) { border-top: 1px solid var(--border); }
-      .service-split { gap: 44px; }
       /* videos become a swipe row */
       .reels {
         grid-template-columns: none;
         grid-auto-flow: column;
-        grid-auto-columns: minmax(240px, 34%);
+        grid-auto-columns: minmax(230px, 34%);
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         margin: 0 calc(-1 * var(--gutter));
@@ -680,12 +646,14 @@
       .reel { scroll-snap-align: start; }
     }
     @media (max-width: 900px) {
-      #about, .service-split, .results-head { grid-template-columns: 1fr; gap: 40px; }
+      #about, .svc-top, .results-head { grid-template-columns: 1fr; gap: 28px; }
+      .svc-grid { grid-template-columns: 1fr; }
       .about-img-wrap { max-width: 320px; margin: 0 auto; width: 100%; aspect-ratio: 3/4; }
       .pillars, .partner-grid { grid-template-columns: 1fr; }
       .pillar { border-right: none; border-bottom: 1px solid #c9c4ba; }
       .pillar:last-child { border-bottom: none; }
-      .chalk-arrow { right: auto; left: 50%; top: auto; bottom: -34px; margin-left: -46px; transform: rotate(90deg); }
+      .chalk-arrow { right: auto; left: 50%; top: auto; bottom: -36px; margin-left: -28px; width: 52px; transform: rotate(132deg) scale(.6); }
+      .pillar.visible .chalk-arrow { transform: rotate(132deg) scale(1); }
       .case-strip { grid-template-columns: 1fr; gap: 18px; padding: 26px 22px; }
       .case-source { text-align: left; }
       .work-intro { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -711,7 +679,7 @@
       section { padding-top: 64px; padding-bottom: 68px; }
       footer { flex-direction: column; text-align: center; }
       .metric { padding: 30px 20px 26px; }
-      .pkg, .pillar, .partner { padding-left: 24px; padding-right: 24px; }
+      .svc, .pillar, .partner { padding-left: 24px; padding-right: 24px; }
       #contact { padding-top: 80px; padding-bottom: 88px; }
       .sec-head { margin-bottom: 36px; }
       .reels { grid-auto-columns: 74%; }
@@ -726,7 +694,6 @@
       .metric { border-right: none; border-bottom: 1px solid var(--border); }
       .metric:last-child { border-bottom: none; }
       .metric:nth-child(3), .metric:nth-child(4) { border-top: none; }
-      .partner-logo img.screen { margin-left: -8px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -781,10 +748,13 @@
       <p class="hero-tagline" data-i18n="hero_tagline">
         Short-form content, ads &amp; social media<br />for local businesses
       </p>
-      <a href="mailto:filmedbyjaymes@gmail.com" class="btn">
-        <span data-i18n="hero_cta">Email Me</span>
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <div class="hero-btns">
+        <a href="mailto:filmedbyjaymes@gmail.com" class="btn">
+          <span data-i18n="hero_cta">Email Me</span>
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#results" class="btn btn-ghost"><span data-i18n="hero_cta2">See Results</span></a>
+      </div>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -827,7 +797,7 @@
         customers, not just views. Bilingual in English and Spanish.
       </p>
       <div class="about-stats reveal d3">
-        <div class="stat"><span class="stat-n">3+</span><span class="stat-l" data-i18n="stat_years">Years</span></div>
+        <div class="stat"><span class="stat-n">5+</span><span class="stat-l" data-i18n="stat_years">Years in Business</span></div>
         <div class="stat"><span class="stat-n">3</span><span class="stat-l" data-i18n="stat_partners">Current Partners</span></div>
         <div class="stat"><span class="stat-n">EN</span><span class="stat-l">English</span></div>
         <div class="stat"><span class="stat-n">ES</span><span class="stat-l">Español</span></div>
@@ -837,10 +807,7 @@
         <span class="tag">TikTok</span>
         <span class="tag">Instagram</span>
         <span class="tag">Premiere Pro</span>
-        <span class="tag">Final Cut Pro</span>
         <span class="tag">After Effects</span>
-        <span class="tag">DaVinci Resolve</span>
-        <span class="tag">Sony a6400</span>
         <span class="tag" data-i18n="tag_health">Healthcare Experience</span>
       </div>
     </div>
@@ -876,15 +843,15 @@
       <div class="metric reveal d3">
         <span class="metric-num" data-i18n="m4_num">Record</span>
         <span class="metric-label" data-i18n="m4_label">Biggest Sale Ever</span>
-        <span class="metric-proof" data-i18n="m4_proof">SoCal Auto Touch Up · 5+ years in business, after ad adjustments</span>
+        <span class="metric-proof" data-i18n="m4_proof">SoCal Auto Touch Up · after ad adjustments</span>
       </div>
     </div>
 
     <div class="case-strip reveal">
-      <img src="images/logo-socal.webp" alt="SoCal Auto Touch Up" class="case-logo" />
+      <img src="images/logo-socal-clean.png" alt="SoCal Auto Touch Up" class="case-logo" />
       <p class="case-text" data-i18n="case_text">
-        Two short-form videos a week plus paid ads. After some ad adjustments, a business open for
-        5+ years had its biggest sale ever, and one video reached almost 20K organic views.
+        Two short-form videos a week plus paid ads. After some ad adjustments, SoCal Auto Touch Up
+        had its biggest sale ever, and one video reached almost 20K organic views.
       </p>
       <span class="case-source" data-i18n="case_source">SoCal Auto Touch Up<br />Automotive</span>
     </div>
@@ -893,61 +860,51 @@
   <!-- ──────────── 03 SERVICES ──────────── -->
   <section id="services">
     <div class="sec-head"><span class="sec-num">03</span><span class="sec-name" data-i18n="services_label">Services</span></div>
-    <div class="service-split">
-
-      <div>
-        <h2 class="heading reveal" data-i18n="services_heading">Built for<br /><em>your business.</em></h2>
-        <p class="blurb reveal d1" data-i18n="services_blurb">
-          Whether you need content, ads, or both, I handle the work from idea to posting, in English
-          and Spanish. Pricing depends on your business, so email me and we'll talk it through.
-        </p>
-        <div class="service-items reveal d2">
-          <div class="service-item"><span class="service-item-name" data-i18n="svc1">Short-Form Video (Reels &amp; TikToks)</span><div class="service-item-arrow"></div></div>
-          <div class="service-item"><span class="service-item-name" data-i18n="svc2">Content Strategy &amp; Bilingual Scripts</span><div class="service-item-arrow"></div></div>
-          <div class="service-item"><span class="service-item-name" data-i18n="svc3">Google Ads Setup &amp; Management</span><div class="service-item-arrow"></div></div>
-          <div class="service-item"><span class="service-item-name" data-i18n="svc4">Social Media Management &amp; Posting</span><div class="service-item-arrow"></div></div>
-          <div class="service-item"><span class="service-item-name" data-i18n="svc5">Monthly Retainers</span><div class="service-item-arrow"></div></div>
-          <div class="service-item"><span class="service-item-name" data-i18n="svc6">Brand &amp; Promo Video</span><div class="service-item-arrow"></div></div>
-        </div>
-        <div class="industries reveal d3">
-          <span class="industries-label" data-i18n="industries_label">Industries</span>
-          <div class="tags">
-            <span class="tag" data-i18n="ind1">Automotive</span>
-            <span class="tag" data-i18n="ind2">Local Business</span>
-            <span class="tag" data-i18n="ind3">Healthcare</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal d1">
-        <div class="packages">
-          <div class="pkg">
-            <span class="pkg-num">01</span>
-            <h3 class="pkg-name"><em data-i18n="pkg1_name">Content</em></h3>
-            <p class="pkg-desc" data-i18n="pkg1_desc">Short-form videos for Instagram, TikTok and Facebook, edited, captioned and posted for you.</p>
-            <ul class="pkg-list">
-              <li data-i18n="pkg1_l1">Reels &amp; TikToks from your footage or new shoots</li>
-              <li data-i18n="pkg1_l2">Ideas, scripts &amp; captions in EN / ES</li>
-              <li data-i18n="pkg1_l3">Posting &amp; a monthly content plan</li>
-            </ul>
-            <a class="pkg-cta" href="mailto:filmedbyjaymes@gmail.com?subject=Content%20package%20inquiry" data-i18n="pkg_cta">Email for a quote</a>
-          </div>
-          <div class="pkg">
-            <span class="pkg-num">02</span>
-            <h3 class="pkg-name"><em data-i18n="pkg2_name">Full Service</em></h3>
-            <p class="pkg-desc" data-i18n="pkg2_desc">Content plus ads, handled together so your videos and your ad spend work as one system.</p>
-            <ul class="pkg-list">
-              <li data-i18n="pkg2_l1">Everything in Content</li>
-              <li data-i18n="pkg2_l2">Ad setup &amp; ongoing management</li>
-              <li data-i18n="pkg2_l3">Monthly reporting on what's working</li>
-            </ul>
-            <a class="pkg-cta" href="mailto:filmedbyjaymes@gmail.com?subject=Full%20service%20inquiry" data-i18n="pkg_cta2">Email for a quote</a>
-          </div>
-        </div>
-        <p class="pkg-note" data-i18n="pkg_note">No two businesses are alike. Email me and we'll set up a call to build the right plan.</p>
-      </div>
-
+    <div class="svc-top">
+      <h2 class="heading reveal" data-i18n="services_heading">Built for<br /><em>your business.</em></h2>
+      <p class="blurb reveal d1" data-i18n="services_blurb">Content, ads, or both. I handle it from idea to posting, in English and Spanish.</p>
     </div>
+
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <span class="svc-num">01</span>
+        <h3 class="svc-name" data-i18n="s1_name">Content</h3>
+        <p class="svc-desc" data-i18n="s1_desc">Short-form video for Instagram, TikTok and Facebook, edited, captioned and posted for you.</p>
+        <ul class="svc-list">
+          <li data-i18n="s1_l1">Reels &amp; TikToks</li>
+          <li data-i18n="s1_l2">Ideas, scripts &amp; captions in EN / ES</li>
+          <li data-i18n="s1_l3">Posting &amp; monthly content plan</li>
+        </ul>
+        <a class="svc-cta" href="mailto:filmedbyjaymes@gmail.com?subject=Content%20inquiry" data-i18n="svc_cta">Email for a quote</a>
+      </article>
+      <article class="svc reveal d1">
+        <span class="svc-num">02</span>
+        <h3 class="svc-name" data-i18n="s2_name">Ads</h3>
+        <p class="svc-desc" data-i18n="s2_desc">Google Ads set up and managed so your budget brings in calls and customers, not wasted clicks.</p>
+        <ul class="svc-list">
+          <li data-i18n="s2_l1">Account setup &amp; cleanup</li>
+          <li data-i18n="s2_l2">Ongoing optimization</li>
+          <li data-i18n="s2_l3">Monthly reporting</li>
+        </ul>
+        <a class="svc-cta" href="mailto:filmedbyjaymes@gmail.com?subject=Ads%20inquiry" data-i18n="svc_cta2">Email for a quote</a>
+      </article>
+      <article class="svc svc-featured reveal d2">
+        <span class="svc-num">03</span>
+        <h3 class="svc-name" data-i18n="s3_name">Content + Ads</h3>
+        <p class="svc-desc" data-i18n="s3_desc">Both together, so your videos and your ad spend work as one system. This is how I run SoCal Auto Touch Up.</p>
+        <ul class="svc-list">
+          <li data-i18n="s3_l1">Everything in Content and Ads</li>
+          <li data-i18n="s3_l2">One person, one plan</li>
+          <li data-i18n="s3_l3">Monthly retainer</li>
+        </ul>
+        <a class="svc-cta" href="mailto:filmedbyjaymes@gmail.com?subject=Content%20%2B%20Ads%20inquiry" data-i18n="svc_cta3">Email for a quote</a>
+      </article>
+    </div>
+
+    <p class="svc-foot reveal">
+      <span data-i18n="svc_foot">Pricing depends on your business. Email me and we'll set up a call.</span>
+      <span class="svc-ind" data-i18n="svc_ind">Automotive · Local business · Healthcare</span>
+    </p>
   </section>
 
   <!-- ──────────── 04 APPROACH (light) ──────────── -->
@@ -961,36 +918,14 @@
         <h3 class="pillar-word" data-i18n="p1_word">Entertain</h3>
         <p class="pillar-desc" data-i18n="p1_desc">Capture attention in the first 3 seconds. Hook first, everything else is secondary.</p>
         <span class="pillar-tag" data-i18n="p1_tag">Stop the scroll</span>
-        <svg class="chalk-arrow" viewBox="0 0 92 54" aria-hidden="true" focusable="false">
-          <defs>
-            <filter id="chalk1" x="-10%" y="-30%" width="120%" height="160%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n"/>
-              <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/>
-            </filter>
-          </defs>
-          <g filter="url(#chalk1)">
-            <path class="c2" pathLength="1" d="M10 31 C26 22, 48 36, 78 26 M64 12 C71 18, 77 22, 80 27 C74 33, 69 38, 63 45"/>
-            <path class="c1" pathLength="1" d="M8 28 C26 20, 46 33, 76 25 M62 10 C69 16, 75 21, 78 26 C72 32, 67 36, 61 43"/>
-          </g>
-        </svg>
+        <img class="chalk-arrow" src="images/arrow-chalk.png" alt="" aria-hidden="true" />
       </div>
       <div class="pillar reveal d1">
         <span class="pillar-num">02</span>
         <h3 class="pillar-word" data-i18n="p2_word">Inform</h3>
         <p class="pillar-desc" data-i18n="p2_desc">Earn their trust. Show why you're the right choice before they ever visit your page.</p>
         <span class="pillar-tag" data-i18n="p2_tag">Build trust &amp; authority</span>
-        <svg class="chalk-arrow" viewBox="0 0 92 54" aria-hidden="true" focusable="false">
-          <defs>
-            <filter id="chalk2" x="-10%" y="-30%" width="120%" height="160%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="8" result="n"/>
-              <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/>
-            </filter>
-          </defs>
-          <g filter="url(#chalk2)">
-            <path class="c2" pathLength="1" d="M10 31 C26 22, 48 36, 78 26 M64 12 C71 18, 77 22, 80 27 C74 33, 69 38, 63 45"/>
-            <path class="c1" pathLength="1" d="M8 28 C26 20, 46 33, 76 25 M62 10 C69 16, 75 21, 78 26 C72 32, 67 36, 61 43"/>
-          </g>
-        </svg>
+        <img class="chalk-arrow" src="images/arrow-chalk.png" alt="" aria-hidden="true" />
       </div>
       <div class="pillar reveal d2">
         <span class="pillar-num">03</span>
@@ -1011,7 +946,7 @@
     <div class="work-intro">
       <div>
         <h2 class="heading reveal" data-i18n="work_heading">The work<br /><em>speaks.</em></h2>
-        <p class="work-note reveal d1" data-i18n="work_note">Tap a video to play it right here.</p>
+        <p class="work-note reveal d1" data-i18n="work_note">Tap a video to watch it on TikTok or Instagram.</p>
       </div>
       <a href="https://www.instagram.com/filmedbyjaymes/" target="_blank" rel="noopener" class="text-link reveal">
         <span data-i18n="work_more">More on Instagram</span>
@@ -1019,53 +954,27 @@
       </a>
     </div>
 
-    <!-- Official TikTok / Instagram embeds: the platforms supply the cover image and player. -->
     <div class="reels">
-
-      <figure class="reel reveal">
-        <div class="reel-frame" data-loading="Loading TikTok…">
-          <iframe src="https://www.tiktok.com/embed/v2/7681039057501031693" title="AMSC TikTok video" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-        <figcaption class="reel-cap">
-          <span class="reel-plat">TikTok</span>
-          <span class="reel-title" data-i18n="r1_title">AMSC · 50K views, organic</span>
-          <a class="reel-link" href="https://www.tiktok.com/@amsccollege/video/7681039057501031693" target="_blank" rel="noopener" data-i18n="open_tt">Open on TikTok ↗</a>
-        </figcaption>
-      </figure>
-
-      <figure class="reel reveal d1">
-        <div class="reel-frame" data-loading="Loading Instagram…">
-          <iframe src="https://www.instagram.com/reel/Dez7k2PSCSF/embed/" title="Instagram Reel" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-        <figcaption class="reel-cap">
-          <span class="reel-plat">Instagram</span>
-          <span class="reel-title" data-i18n="r_ig">Instagram Reel</span>
-          <a class="reel-link" href="https://www.instagram.com/reel/Dez7k2PSCSF/" target="_blank" rel="noopener" data-i18n="open_ig">Open on Instagram ↗</a>
-        </figcaption>
-      </figure>
-
-      <figure class="reel reveal d2">
-        <div class="reel-frame" data-loading="Loading Instagram…">
-          <iframe src="https://www.instagram.com/reel/DeTA_ypNT7e/embed/" title="Instagram Reel" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-        <figcaption class="reel-cap">
-          <span class="reel-plat">Instagram</span>
-          <span class="reel-title" data-i18n="r_ig2">Instagram Reel</span>
-          <a class="reel-link" href="https://www.instagram.com/reel/DeTA_ypNT7e/" target="_blank" rel="noopener" data-i18n="open_ig2">Open on Instagram ↗</a>
-        </figcaption>
-      </figure>
-
-      <figure class="reel reveal d3">
-        <div class="reel-frame" data-loading="Loading Instagram…">
-          <iframe src="https://www.instagram.com/reel/DN0514uQmHh/embed/" title="Instagram Reel" loading="lazy" allow="encrypted-media; fullscreen" allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-        <figcaption class="reel-cap">
-          <span class="reel-plat">Instagram</span>
-          <span class="reel-title" data-i18n="r_ig3">Instagram Reel</span>
-          <a class="reel-link" href="https://www.instagram.com/reel/DN0514uQmHh/" target="_blank" rel="noopener" data-i18n="open_ig3">Open on Instagram ↗</a>
-        </figcaption>
-      </figure>
-
+      <a class="reel reveal" href="https://www.tiktok.com/@amsccollege/video/7681039057501031693" target="_blank" rel="noopener" style="--thumb:url(images/work-1.jpg)">
+        <span class="reel-plat">TikTok</span>
+        <span class="reel-play" aria-hidden="true"></span>
+        <span class="reel-paper"><span class="reel-client">AMSC</span><span class="reel-title" data-i18n="r1_title">50K views, organic</span><span class="reel-watch" data-i18n="watch_tt">Watch on TikTok ↗</span></span>
+      </a>
+      <a class="reel reveal d1" href="https://www.instagram.com/reel/Dez7k2PSCSF/" target="_blank" rel="noopener" style="--thumb:url(images/work-2.jpg)">
+        <span class="reel-plat">Instagram</span>
+        <span class="reel-play" aria-hidden="true"></span>
+        <span class="reel-paper"><span class="reel-client">AMSC</span><span class="reel-title" data-i18n="r2_title">The reality of sonography school</span><span class="reel-watch" data-i18n="watch_ig">Watch on Instagram ↗</span></span>
+      </a>
+      <a class="reel reveal d2" href="https://www.instagram.com/reel/DeTA_ypNT7e/" target="_blank" rel="noopener" style="--thumb:url(images/work-3.jpg)">
+        <span class="reel-plat">Instagram</span>
+        <span class="reel-play" aria-hidden="true"></span>
+        <span class="reel-paper"><span class="reel-client">SoCal Auto Touch Up</span><span class="reel-title" data-i18n="r3_title">Customer reaction reel</span><span class="reel-watch" data-i18n="watch_ig2">Watch on Instagram ↗</span></span>
+      </a>
+      <a class="reel reveal d3" href="https://www.instagram.com/reel/DN0514uQmHh/" target="_blank" rel="noopener" style="--thumb:url(images/work-4.jpg)">
+        <span class="reel-plat">Instagram</span>
+        <span class="reel-play" aria-hidden="true"></span>
+        <span class="reel-paper"><span class="reel-client">SoCal Auto Touch Up</span><span class="reel-title" data-i18n="r4_title">$2,000 rims</span><span class="reel-watch" data-i18n="watch_ig3">Watch on Instagram ↗</span></span>
+      </a>
     </div>
   </section>
 
@@ -1075,11 +984,11 @@
     <h2 class="heading reveal" data-i18n="partners_heading" style="margin-bottom:40px;">Who I work<br /><em>with.</em></h2>
 
     <div class="partner-grid">
-      <div class="partner reveal" style="--glow: 255,45,85; --bgglow: 0.04;">
-        <div class="partner-logo"><img class="screen" src="images/logo-socal.webp" alt="SoCal Auto Touch Up" /></div>
+      <div class="partner reveal" style="--glow: 255,45,85; --bgglow: 0.1;">
+        <div class="partner-logo"><img src="images/logo-socal-clean.png" alt="SoCal Auto Touch Up" /></div>
         <span class="partner-role" data-i18n="pa1_role">Content + Paid Ads</span>
         <h3 class="partner-name">SoCal Auto Touch Up</h3>
-        <p class="partner-desc" data-i18n="pa1_desc">Two short-form videos a week plus ad management for an automotive business open 5+ years.</p>
+        <p class="partner-desc" data-i18n="pa1_desc">Two short-form videos a week plus ad management for an automotive business.</p>
         <p class="partner-result" data-i18n="pa1_result">Biggest sale ever after ad adjustments</p>
       </div>
       <div class="partner reveal d1" style="--glow: 79,140,247;">
@@ -1163,7 +1072,7 @@
         ring.style.top = ry + 'px';
         requestAnimationFrame(animRing);
       })();
-      document.querySelectorAll('a, button, .service-item, .pkg, .partner, .pillar').forEach(el => {
+      document.querySelectorAll('a, button, .svc, .partner, .pillar, .reel').forEach(el => {
         el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
         el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
       });
@@ -1225,41 +1134,38 @@
       nav_work: 'Trabajo', nav_partners: 'Socios', nav_contact: 'Contacto',
       hero_eyebrow: 'Coordinador de Marketing y Creador de Contenido · Upland, CA',
       hero_tagline: 'Contenido corto, anuncios y redes sociales<br />para negocios locales',
-      hero_cta: 'Escríbeme', hero_scroll: 'Desliza',
+      hero_cta: 'Escríbeme', hero_cta2: 'Ver Resultados', hero_scroll: 'Desliza',
       mq1: 'Contenido Corto', mq2: 'Gestión de Google Ads', mq3: 'Marketing en Redes',
       mq4: 'Crecimiento Orgánico', mq5: 'Automotriz', mq6: 'Negocios Locales', mq7: 'Bilingüe EN / ES',
       about_label: 'Sobre mí',
       about_heading: 'Convierto contenido<br /><em><span class="lens-underline">en clientes.</span></em>',
       about_p1: 'Soy Jaymes Verduzco, coordinador de marketing y creador de contenido en Upland, California. Soy el coordinador de marketing de AMSC y manejo contenido corto y anuncios para negocios locales en el Inland Empire.',
       about_p2: 'Empecé en la producción de video, así que todo lo que hago está pensado para verse bien y atraer clientes reales, no solo vistas. Bilingüe en inglés y español.',
-      stat_years: 'Años', stat_partners: 'Socios Actuales', tag_health: 'Experiencia en Salud',
+      stat_years: 'Años en el Negocio', stat_partners: 'Socios Actuales', tag_health: 'Experiencia en Salud',
       results_label: 'Resultados',
       results_heading: 'Resultados reales,<br /><em>no solo vistas.</em>',
       results_intro: 'Cada número viene de negocios que manejo actualmente. Las vistas son orgánicas, sin inversión en anuncios.',
       m1_label: 'Vistas en TikTok', m1_proof: 'AMSC · orgánico',
       m2_label: 'Vistas en un Reel', m2_proof: 'AMSC · orgánico',
       m3_label: 'Vistas en un Video', m3_proof: 'SoCal Auto Touch Up · orgánico',
-      m4_num: 'Récord', m4_label: 'Mayor Venta Hasta Hoy', m4_proof: 'SoCal Auto Touch Up · más de 5 años en el negocio, tras ajustes en anuncios',
-      case_text: 'Dos videos cortos por semana más anuncios pagados. Después de algunos ajustes en los anuncios, un negocio con más de 5 años abierto tuvo su mayor venta hasta hoy, y un video casi llegó a 20K vistas orgánicas.',
+      m4_num: 'Récord', m4_label: 'Mayor Venta Hasta Hoy', m4_proof: 'SoCal Auto Touch Up · tras ajustes en anuncios',
+      case_text: 'Dos videos cortos por semana más anuncios pagados. Después de algunos ajustes en los anuncios, SoCal Auto Touch Up tuvo su mayor venta hasta hoy, y un video casi llegó a 20K vistas orgánicas.',
       case_source: 'SoCal Auto Touch Up<br />Automotriz',
       services_label: 'Servicios',
       services_heading: 'Hecho para<br /><em>tu negocio.</em>',
-      services_blurb: 'Ya sea contenido, anuncios o ambos, me encargo de todo, desde la idea hasta publicar, en inglés y en español. El precio depende de tu negocio, así que escríbeme y lo platicamos.',
-      svc1: 'Video Corto (Reels y TikToks)', svc2: 'Estrategia y Guiones Bilingües', svc3: 'Configuración y Manejo de Google Ads',
-      svc4: 'Manejo de Redes y Publicación', svc5: 'Contratos Mensuales', svc6: 'Video de Marca y Promocional',
-      industries_label: 'Industrias', ind1: 'Automotriz', ind2: 'Negocios Locales', ind3: 'Salud',
-      pkg1_name: 'Contenido',
-      pkg1_desc: 'Videos cortos para Instagram, TikTok y Facebook, editados, con subtítulos y publicados por mí.',
-      pkg1_l1: 'Reels y TikToks con tu material o nuevas grabaciones',
-      pkg1_l2: 'Ideas, guiones y textos en EN / ES',
-      pkg1_l3: 'Publicación y plan de contenido mensual',
-      pkg_cta: 'Escríbeme para una cotización', pkg_cta2: 'Escríbeme para una cotización',
-      pkg2_name: 'Servicio Completo',
-      pkg2_desc: 'Contenido y anuncios juntos, para que tus videos y tu inversión en anuncios trabajen como un solo sistema.',
-      pkg2_l1: 'Todo lo de Contenido',
-      pkg2_l2: 'Configuración y manejo continuo de anuncios',
-      pkg2_l3: 'Reporte mensual de lo que funciona',
-      pkg_note: 'No hay dos negocios iguales. Escríbeme y agendamos una llamada para armar el plan correcto.',
+      services_blurb: 'Contenido, anuncios o ambos. Me encargo de todo, desde la idea hasta publicar, en inglés y en español.',
+      s1_name: 'Contenido',
+      s1_desc: 'Video corto para Instagram, TikTok y Facebook, editado, con subtítulos y publicado por mí.',
+      s1_l1: 'Reels y TikToks', s1_l2: 'Ideas, guiones y textos en EN / ES', s1_l3: 'Publicación y plan de contenido mensual',
+      s2_name: 'Anuncios',
+      s2_desc: 'Google Ads configurado y manejado para que tu presupuesto traiga llamadas y clientes, no clics desperdiciados.',
+      s2_l1: 'Configuración y limpieza de la cuenta', s2_l2: 'Optimización continua', s2_l3: 'Reportes mensuales',
+      s3_name: 'Contenido + Anuncios',
+      s3_desc: 'Ambos juntos, para que tus videos y tu inversión en anuncios trabajen como un solo sistema. Así manejo SoCal Auto Touch Up.',
+      s3_l1: 'Todo lo de Contenido y Anuncios', s3_l2: 'Una persona, un plan', s3_l3: 'Contrato mensual',
+      svc_cta: 'Escríbeme para una cotización', svc_cta2: 'Escríbeme para una cotización', svc_cta3: 'Escríbeme para una cotización',
+      svc_foot: 'El precio depende de tu negocio. Escríbeme y agendamos una llamada.',
+      svc_ind: 'Automotriz · Negocios locales · Salud',
       approach_label: 'Mi método',
       approach_heading: 'Cómo creo<br /><em>cada video.</em>',
       p1_word: 'Entretener', p1_desc: 'Captura la atención en los primeros 3 segundos. Primero el gancho, lo demás es secundario.', p1_tag: 'Detén el scroll',
@@ -1268,16 +1174,17 @@
       approach_line: '<strong>Entretén</strong> para que te vean. <strong>Informa</strong> para que confíen. <strong>Vende</strong> para conseguir clientes.',
       work_label: 'Trabajo Destacado',
       work_heading: 'El trabajo<br /><em>habla.</em>',
-      work_note: 'Toca un video para verlo aquí mismo.',
+      work_note: 'Toca un video para verlo en TikTok o Instagram.',
       work_more: 'Más en Instagram',
-      r1_title: 'AMSC · 50K vistas, orgánico',
-      r_ig: 'Reel de Instagram', r_ig2: 'Reel de Instagram', r_ig3: 'Reel de Instagram',
-      open_tt: 'Abrir en TikTok ↗',
-      open_ig: 'Abrir en Instagram ↗', open_ig2: 'Abrir en Instagram ↗', open_ig3: 'Abrir en Instagram ↗',
+      r1_title: '50K vistas, orgánico',
+      r2_title: 'La realidad de la escuela de sonografía',
+      r3_title: 'Reel de reacción del cliente',
+      r4_title: 'Rines de $2,000',
+      watch_tt: 'Ver en TikTok ↗', watch_ig: 'Ver en Instagram ↗', watch_ig2: 'Ver en Instagram ↗', watch_ig3: 'Ver en Instagram ↗',
       partners_label: 'Socios Actuales',
       partners_heading: 'Con quién<br /><em>trabajo.</em>',
       pa1_role: 'Contenido + Anuncios Pagados',
-      pa1_desc: 'Dos videos cortos por semana y manejo de anuncios para un negocio automotriz con más de 5 años abierto.',
+      pa1_desc: 'Dos videos cortos por semana y manejo de anuncios para un negocio automotriz.',
       pa1_result: 'La mayor venta hasta hoy tras ajustes en anuncios',
       pa2_role: 'Coordinador de Marketing',
       pa2_desc: 'Contenido para redes y coordinación de marketing de la universidad.',
