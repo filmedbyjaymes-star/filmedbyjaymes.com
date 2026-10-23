@@ -18,3 +18,10 @@ Each translatable element has a `data-i18n="key"` that matches a key in `ES`.
 - Results numbers: `.metric` blocks in the Results section
 - Partners: `.partner` blocks in the Partners section
 - Contact: email only (`filmedbyjaymes@gmail.com`)
+
+## Work section (video embeds)
+The four videos in `#work` are official TikTok / Instagram iframe embeds, so the platforms supply the
+cover image and player. To swap a video, change the iframe `src` in `index.html`:
+- TikTok: `https://www.tiktok.com/embed/v2/<VIDEO_ID>`
+- Instagram: `https://www.instagram.com/reel/<SHORTCODE>/embed/`
+and update the matching "Open on ..." link. No thumbnail files are needed.
